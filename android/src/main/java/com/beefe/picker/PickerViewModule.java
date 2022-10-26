@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.os.Build;
+import android.util.Log;
 
 import com.beefe.picker.util.MIUIUtils;
 import com.beefe.picker.view.OnSelectedListener;
@@ -77,6 +78,7 @@ import static android.graphics.Color.argb;
  */
 
 public class PickerViewModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
+    private String TAG = "PickerViewModule";
     
     private static final String FONTS = "fonts/";
     private static final String OTF = ".otf";
@@ -191,7 +193,8 @@ public class PickerViewModule extends ReactContextBaseJavaModule implements Life
             if (options.hasKey(PICKER_CONFIRM_BTN_TEXT)) {
                 confirmText = options.getString(PICKER_CONFIRM_BTN_TEXT);
             }
-            confirmTV.setText(!TextUtils.isEmpty(confirmText) ? confirmText : "");
+            Log.d(TAG, "_init_. confirmText:" + confirmText);
+            confirmTV.setText(!TextUtils.isEmpty(confirmText) ? confirmText : "确定");
 
             if (options.hasKey(PICKER_CONFIRM_BTN_COLOR)) {
                 ReadableArray array = options.getArray(PICKER_CONFIRM_BTN_COLOR);
@@ -218,6 +221,7 @@ public class PickerViewModule extends ReactContextBaseJavaModule implements Life
             if (options.hasKey(PICKER_TITLE_TEXT)) {
                 titleText = options.getString(PICKER_TITLE_TEXT);
             }
+            Log.d(TAG, "_init_. titleText:" + titleText);
             titleTV.setText(!TextUtils.isEmpty(titleText) ? titleText : "");
             if (options.hasKey(PICKER_TITLE_TEXT_COLOR)) {
                 ReadableArray array = options.getArray(PICKER_TITLE_TEXT_COLOR);
@@ -228,7 +232,8 @@ public class PickerViewModule extends ReactContextBaseJavaModule implements Life
             if (options.hasKey(PICKER_CANCEL_BTN_TEXT)) {
                 cancelText = options.getString(PICKER_CANCEL_BTN_TEXT);
             }
-            cancelTV.setText(!TextUtils.isEmpty(cancelText) ? cancelText : "");
+            Log.d(TAG, "_init_. cancelText:" + cancelText);
+            cancelTV.setText(!TextUtils.isEmpty(cancelText) ? cancelText : "取消");
             if (options.hasKey(PICKER_CANCEL_BTN_COLOR)) {
                 ReadableArray array = options.getArray(PICKER_CANCEL_BTN_COLOR);
                 int[] colors = getColor(array);
